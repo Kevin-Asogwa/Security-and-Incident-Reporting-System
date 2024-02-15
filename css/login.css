@@ -1,0 +1,110 @@
+/* This is the login.css file for the login page */
+
+/* Import the other CSS files */
+@import url("header.css");
+@import url("footer.css");
+@import url("body.css");
+
+/* Add some additional styles for the login form */
+
+.main {
+  margin-top: 500px;
+  margin: 120px auto 70px auto;
+}
+.login-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  border: 1px solid var(--green);
+  border-radius: 10px;
+}
+
+.login-form h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.login-form p {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--black);
+  margin-bottom: 10px;
+}
+
+.login-form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.login-form i {
+  font-size: 24px;
+  color: var(--green);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 7px;
+  margin: 5px 0px;
+}
+
+.toggle {
+  /* position: absolute;
+  right: 40px;
+  top: 220px; */
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  /* background-color: var(--green); */
+  color: var(--white);
+  cursor: pointer;
+}
+
+.toggle i {
+  font-size: 18px;
+}
+.submit {
+  padding-top: 70px;
+  display: inline-block;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Add a hover effect for all buttons */
+.submit:hover {
+  transform: scale(1.01);
+  background-color: var(--dark-green);
+}
+body > main > div > p {
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+.register {
+  color: var(--dark-green);
+  display: inline-block;
+  font-size: 18px;
+  padding-left: 5px;
+}
+.register:hover,
+.forgot-password:hover {
+  transform: scale(1.01);
+  color: var(--dark-green);
+}
+.forgot-password {
+  color: var(--dark-green);
+  padding-left: 250px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

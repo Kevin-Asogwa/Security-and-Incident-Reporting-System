@@ -1,0 +1,152 @@
+/* This is the header.css file */
+
+/* Style the header section */
+.header {
+  position: relative;
+  /* height: 50vh; */
+  /* background-image: url("bg1.avif"); */
+  /* background-size: cover;
+    background-position: center; */
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+}
+.bg img {
+  height: 230px;
+  width: 100%;
+  background-size: cover;
+  position: center;
+  align-items: center;
+  margin: auto;
+}
+/* Style the logo element */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* Style the logo image */
+.logo img {
+  width: 70px;
+  height: 70px;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+.container span {
+  color: #006400;
+  margin-left: 100px;
+  font-size: 30px;
+}
+
+/* Style the navigation bar element */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav ul li {
+  display: inline-block;
+}
+
+/* Style the navigation bar links */
+.nav ul li a {
+  font-size: 20px;
+  font-weight: 200;
+  padding-left: 20px;
+  color: var(--dark-green);
+}
+
+/* Add a hover effect for the navigation bar links */
+.nav ul li a:hover {
+  color: var(--light-green);
+}
+
+/* Highlight the active navigation bar link */
+.nav ul li a.active {
+  color: var(--green);
+  border: 3px solid var(--green);
+  align-items: center;
+  padding-left: 0px;
+  background-color: var(--dark-green);
+  color: var(--white);
+}
+
+/* Align the logo and the navigation bar to the left and right sides of the container */
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+/* Add a media query for small screens */
+@media screen and (max-width: 768px) {
+  /* Make the navigation bar responsive */
+  .nav {
+    display: none;
+  }
+
+  /* Add a hamburger icon for the navigation menu */
+  .hamburger {
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  /* Style the hamburger icon with three bars */
+  .hamburger div {
+    width: 100%;
+    height: 4px;
+    background-color: var(--white);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
+  /* Rotate the bars when the hamburger icon is clicked */
+  .hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -9px);
+  }
+
+  /* Show the navigation menu when the hamburger icon is clicked */
+  .nav.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: scroll;
+  }
+  /* Style the navigation menu links for small screens */
+  .nav.active ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .nav.active ul li {
+    font-size: 24px;
+  }
+
+  .nav.active ul li a {
+    color: var(--white);
+  }
+}

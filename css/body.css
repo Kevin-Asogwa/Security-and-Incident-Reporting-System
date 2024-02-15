@@ -1,0 +1,121 @@
+/* This is the body.css file */
+
+/* Use a custom font from Google Fonts */
+@import url("../fontawesome/css/fontawesome.css");
+@import url("../fontawesome/css/brands.css");
+@import url("../fontawesome/css/solid.css");
+
+/* Use a green color scheme */
+:root {
+  --green: #008000;
+  --light-green: #90ee90;
+  --dark-green: #006400;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+/* Use a box-sizing model that includes padding and border */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding from all elements */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a common style for all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Set a common style for all paragraphs */
+p {
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* Set a common style for all links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Set a common style for all images */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Set a common style for all lists */
+ul {
+  list-style: none;
+}
+
+/* Set a common style for all buttons */
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Add a hover effect for all buttons */
+.btn:hover {
+  transform: scale(1.1);
+  background-color: var(--dark-green);
+}
+
+/* Set a common style for the container element */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Style the main section */
+.main {
+  display: flex;
+  align-items: center;
+  height: 50vh;
+  background-color: var(--white);
+  margin-bottom: 0px;
+}
+
+/* Style the introduction element */
+.intro {
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Style the introduction heading */
+.intro h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+/* Style the introduction paragraph */
+.intro p {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--black);
+  margin-bottom: 10px;
+}

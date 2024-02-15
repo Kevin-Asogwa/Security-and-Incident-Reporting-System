@@ -1,0 +1,94 @@
+:root {
+  --primary-bg-color: #333;
+  --primary-text-color: #fff;
+  --sidebar-bg-color: #eee;
+  --sidebar-text-color: #333;
+  --link-color: #006400; /* Dark green */
+}
+
+/* Import other CSS files if needed */
+@import url("body.css");
+@import url("header.css");
+@import url("footer.css");
+
+/* Your additional styles for the dashboard */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: var(
+    --white
+  ); /* Use your header background color variable */
+  color: var(--black); /* Use your header text color variable */
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.notification-bell {
+  /* Your notification bell styling */
+}
+
+.sidebar {
+  width: 30%;
+  height: 100vh;
+  background-color: var(
+    --sidebar-bg-color
+  ); /* Use your sidebar background color variable */
+  float: left;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  border-bottom: 1px solid var(--black); /* Use your border color variable */
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: var(--sidebar-text-color); /* Use your sidebar text color variable */
+  display: block;
+}
+
+.sidebar ul li ul {
+  list-style-type: none;
+  padding-left: 20px;
+  display: none;
+}
+
+.sidebar ul li:hover ul {
+  display: block;
+}
+
+.main-content {
+  width: 70%;
+  float: left;
+  padding: 20px;
+}
+
+.footer {
+  clear: both;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  padding: 10px;
+  text-align: center;
+}

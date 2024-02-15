@@ -1,0 +1,84 @@
+/* Register.css */
+
+/* Import other CSS files if needed */
+@import url("header.css");
+@import url("footer.css");
+@import url("body.css");
+
+/* Styles for the registration form */
+.main {
+  margin: 500px auto 600px auto;
+}
+
+.register-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  border: 1px solid var(--green);
+  border-radius: 10px;
+}
+
+.register-form h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.register-form p {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--black);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark-green);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--green);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#accommodationOptions {
+  margin-top: 20px;
+}
+
+.submit {
+  display: inline-block;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--green);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit:hover {
+  transform: scale(1.01);
+  background-color: var(--dark-green);
+}
+.nav {
+  display: none;
+}
+
+/* Add more styles as needed */

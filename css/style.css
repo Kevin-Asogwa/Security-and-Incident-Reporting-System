@@ -1,0 +1,8 @@
+/* This is the style.css file for the home page */
+
+/* Import the other CSS files */
+@import url("header.css");
+@import url("footer.css");
+@import url("body.css");
+@import url("login.css");
+@import url("register.css");
