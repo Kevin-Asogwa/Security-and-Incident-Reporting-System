@@ -146,3 +146,24 @@ if (isset($_POST['login'])) {
 // Close the database connection
 $conn->close();
 ?> 
+
+//error handling register
+else {
+  //Check if input characters are valid
+  if (!preg_match("/^[a-zA-Z]*$/", $fullname)) {
+      header("Location: ../register.php?register=invalidname");
+      exit();  
+  } else {
+      //check if the email is valid
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          header("Location: ../register.php?register=invalidemail");
+          exit();
+      } else {
+          $sql = "SELECT * FROM students WHERE registration_number = 'registration_number'";
+          $result = mysqli_query($conn, $sql);
+          $resultCheck = mysqli_num_rows($result);
+
+          if ($resultCheck > 0) {
+          header("Location: ../register.php?register=usertaken");
+          exit();
+          } 

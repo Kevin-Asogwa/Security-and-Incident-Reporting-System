@@ -35,7 +35,7 @@
             as request or access additional support or assistance.
           </p>
           <!-- Button with link to the report page -->
-          <a href="#" class="btn">Report Now</a>
+          <a href="login.php" class="btn">Report Now</a>
         </div>
       </div>
     </main>

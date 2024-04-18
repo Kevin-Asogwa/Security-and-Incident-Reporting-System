@@ -7,13 +7,13 @@
 
 /* Styles for the registration form */
 .main {
-  margin: 500px auto 600px auto;
+  margin: 600px auto 700px auto;
 }
 
 .register-form {
   max-width: 500px;
   margin: 0 auto;
-  padding: 50px 20px;
+  padding: 50px;
   border: 1px solid var(--green);
   border-radius: 10px;
 }

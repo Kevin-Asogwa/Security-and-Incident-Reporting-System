@@ -1,94 +1,340 @@
+@import url("../fontawesome/css/fontawesome.css");
+@import url("../fontawesome/css/brands.css");
+@import url("../fontawesome/css/solid.css");
+/* Use a green color scheme */
 :root {
-  --primary-bg-color: #333;
-  --primary-text-color: #fff;
-  --sidebar-bg-color: #eee;
-  --sidebar-text-color: #333;
-  --link-color: #006400; /* Dark green */
+  --green: #008000;
+  --light-green: #cdf5cd;
+  --dark-green: #006400;
+  --white: #ffffff;
+  --black: #000000;
 }
 
-/* Import other CSS files if needed */
-@import url("body.css");
-@import url("header.css");
-@import url("footer.css");
-
-/* Your additional styles for the dashboard */
-
-body {
-  font-family: Arial, sans-serif;
-}
-
-header {
-  background-color: var(
-    --white
-  ); /* Use your header background color variable */
-  color: var(--black); /* Use your header text color variable */
-  padding: 10px;
+/* Define the container for the whole page */
+.container {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  flex-direction: column;
+  position: absolute;
 }
 
-.profile-section {
+/* Define the header section */
+.header {
+  width: 100%;
+  height: 10%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  background-color: var(--green);
+  color: var(--white);
 }
 
-.profile-picture {
-  width: 40px;
-  height: 40px;
+/* Define the logo section */
+.logo {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.logo img {
+  width: 70px;
+  height: 50px;
+}
+
+/* Define the title section */
+.title {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Define the profile section */
+.profile {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Define the profile picture */
+.profile img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin-right: 10px;
 }
-
-.notification-bell {
-  /* Your notification bell styling */
-}
-
-.sidebar {
-  width: 30%;
-  height: 100vh;
-  background-color: var(
-    --sidebar-bg-color
-  ); /* Use your sidebar background color variable */
-  float: left;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  padding: 10px;
-  border-bottom: 1px solid var(--black); /* Use your border color variable */
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: var(--sidebar-text-color); /* Use your sidebar text color variable */
-  display: block;
-}
-
-.sidebar ul li ul {
-  list-style-type: none;
+.profile span {
+  clear: both;
+  display: inline-block;
+  width: 100%;
   padding-left: 20px;
+  font-weight: bold;
+}
+/* Define the notification icon */
+.notification {
+  font-size: 20px;
+}
+
+/* Define the sidebar section */
+.sidebar {
+  width: 10%;
+  height: 100%;
+  display: inline-block;
+  background-color: var(--light-green);
+  color: var(--black);
+  padding: 40px;
+  position: relative;
+}
+
+/* Define the sidebar list */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Define the sidebar list items */
+.sidebar li {
+  width: 100%;
+  height: 10%;
+  display: block;
+  padding: 28px 0px;
+  font-size: 20px;
+}
+
+/* Define the sidebar sub-list */
+.sidebar ul ul {
   display: none;
 }
+.sidebar li a,
+a {
+  text-decoration: none;
+  color: var(--dark-green);
+  font-weight: bold;
+}
+/* Style for dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
 
-.sidebar ul li:hover ul {
+.dropdown-menu a {
+  color: #000;
+  padding: 12px 16px;
+  text-decoration: none;
   display: block;
 }
 
-.main-content {
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+/* Define the sidebar sub-list items */
+
+/* Define the show class for the sub-list */
+.show {
+  display: block;
+}
+#sub-profile-overview {
+  display: none; /* Initially hide sub-menu */
+}
+/* Define the main section */
+.main {
   width: 70%;
-  float: left;
-  padding: 20px;
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  color: var(--black);
+  padding-left: 20%;
+  margin-top: -40%;
+  margin-bottom: 10%;
 }
 
-.footer {
-  clear: both;
-  background-color: var(--primary-bg-color);
-  color: var(--primary-text-color);
+/* Define the boxes section */
+.boxes {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.boxes ul {
+  list-style-type: none;
+}
+/* Define the box section */
+.box {
+  width: 25%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid var(--green);
+  border-radius: 10px;
+}
+
+/* Define the icon section */
+.icon {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: var(--green);
+}
+
+/* Define the info section */
+.info {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Define the tips section */
+.tips {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
-  text-align: center;
+  font-size: 18px;
+  margin: 60px;
+}
+
+/* Define the footer section */
+.footer {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-green);
+  color: var(--white);
+  position: relative;
+}
+
+/* Use media queries to make the layout responsive */
+@media screen and (max-width: 768px) {
+  /* Make the header section vertical */
+  .header {
+    flex-direction: column;
+    height: 20%;
+  }
+
+  /* Make the logo section smaller */
+  .logo {
+    width: 100%;
+    height: 50%;
+  }
+
+  /* Make the title section smaller */
+  .title {
+    width: 100%;
+    height: 50%;
+  }
+
+  /* Make the profile section smaller */
+  .profile {
+    width: 100%;
+    height: 50%;
+  }
+
+  /* Make the profile picture smaller */
+  .profile img {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Make the notification icon smaller */
+  .notification {
+    font-size: 15px;
+  }
+
+  /* Make the container section horizontal */
+  .container {
+    flex-direction: row;
+  }
+
+  /* Make the sidebar section smaller */
+  .sidebar {
+    width: 20%;
+    height: 70%;
+  }
+
+  /* Make the main section larger */
+  .main {
+    width: 80%;
+    height: 70%;
+  }
+
+  /* Make the boxes section vertical */
+  .boxes {
+    flex-direction: column;
+    height: 50%;
+  }
+
+  /* Make the box section horizontal */
+  .box {
+    flex-direction: row;
+    width: 80%;
+    height: 20%;
+  }
+
+  /* Make the icon section smaller */
+  .icon {
+    width: 20%;
+    height: 100%;
+    font-size: 30px;
+  }
+
+  /* Make the info section larger */
+  .info {
+    width: 80%;
+    height: 100%;
+  }
+
+  /* Make the tips section smaller */
+  .tips {
+    height: 40%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Make the sidebar section hidden */
+  .sidebar {
+    display: none;
+  }
+
+  /* Make the main section full width */
+  .main {
+    width: 100%;
+  }
+}
+/* Style the navigation bar links */
+
+/* Add a hover effect for the navigation bar links */
+.sidebar ul li a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Highlight the active navigation bar link */
+.sidebar ul li a.active {
+  color: var(--blu);
+  border: 1px solid var(--green);
+
+  background-color: var(--dark-green);
+  color: var(--white);
 }

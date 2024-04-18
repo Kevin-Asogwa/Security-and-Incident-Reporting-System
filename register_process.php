@@ -27,20 +27,22 @@
     $faculty = $_POST['faculty'];
     $department = $_POST['department'];
     $accomodation = $_POST['accomodation'];
-    $hostel = $_POST['hostel'];
-    $room_number = $_POST['room_number'];
-    $lodge_location = $_POST['lodge_location'];
-    $lodge_name = $_POST['lodge_name'];
-    $nearest_landmark = $_POST['nearest_landmark'];
-   
+    $hostel = $_POST['hostel'] ?? NULL;
+    $room_number = $_POST['room_number'] ?? NULL;
+    $lodge_location = $_POST['lodge_location'] ?? NULL;
+    $lodge_name = $_POST['lodge_name'] ?? NULL;
+    $nearest_landmark = $_POST['nearest_landmark'] ?? NULL;
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
     // Insert data into the database
     $sql = "INSERT INTO students (fullname, registration_number, email, phone_number, date_of_birth, gender,
-    campus, faculty, department, accomodation, hostel, room_number, lodge_location, lodge_name, nearest_landmark) 
+    campus, faculty, department, accomodation, hostel, room_number, lodge_location, lodge_name, nearest_landmark, password1, password2) 
     VALUES ('$fullname', '$registration_number', '$email', '$phone_number', '$date_of_birth', '$gender',
-    '$campus', '$faculty', '$department', '$accomodation', '$hostel', '$room_number', '$lodge_location', '$lodge_name', '$nearest_landmark')";
+    '$campus', '$faculty', '$department', '$accomodation', '$hostel', '$room_number', '$lodge_location', '$lodge_name', '$nearest_landmark', '$password1', '$password2')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Records inserted successfully";
+        header("Location: login.php")
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

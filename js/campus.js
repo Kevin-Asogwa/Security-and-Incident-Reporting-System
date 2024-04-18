@@ -24,16 +24,16 @@ function handleCampusChange() {
       addOption(facultySelect, "Veterinary Medicine");
       // Add other faculties for UNN
       break;
-    // case "unec":
-    //   addOption(facultySelect, "Select Faculty");
-    //   addOption(facultySelect, "Business Administration");
-    //   addOption(facultySelect, "Dentistry");
-    //   addOption(facultySelect, "Environmental Studies");
-    //   addOption(facultySelect, "Law");
-    //   addOption(facultySelect, "Health Science and Technology");
-    //   addOption(facultySelect, "Basic Medical Sciences");
-    //   addOption(facultySelect, "Medical Sciences");
-    // Add cases for other campuses
+    case "unec":
+      addOption(facultySelect, "Select Faculty");
+      addOption(facultySelect, "Business Administration");
+      addOption(facultySelect, "Dentistry");
+      addOption(facultySelect, "Environmental Studies");
+      addOption(facultySelect, "Law");
+      addOption(facultySelect, "Health Science and Technology");
+      addOption(facultySelect, "Basic Medical Sciences");
+      addOption(facultySelect, "Medical Sciences");
+    //Add cases for other campuses
   }
 }
 
