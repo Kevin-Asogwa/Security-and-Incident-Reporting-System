@@ -2,21 +2,67 @@
 // Include database connection file
 require_once "../includes/dbh.inc.php";
 
-// Fetch all incident reports from the database
-$sql = "SELECT * FROM incident ORDER BY date_and_time_of_incident DESC;";
-$result = $conn->query($sql);
+// Check if the user is logged in
+session_start();
+if (!isset($_SESSION["registration_number"])) {
+    // Redirect the user to the login page if not logged in
+    header("Location: login.php");
+    exit();
+}
+
+// Fetch the currently logged-in user's registration number
+$registration_number = $_SESSION["registration_number"];
+
+// Fetch incidents reported by the currently logged-in user
+$sql = "SELECT * FROM incident WHERE registration_number = ? ORDER BY date_and_time_of_incident DESC;";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $registration_number);
+$stmt->execute();
+$result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Reported Incidents</title>
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        .wrapper {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 5%;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 17%;
+    
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+    </style>
 </head>
 <body>
-    <div class="container">
+
+    <div class="wrapper">
         <h2>Reported Incidents</h2>
         <?php if ($result->num_rows > 0): ?>
             <table>
@@ -51,5 +97,6 @@ $result = $conn->query($sql);
             <p>No incidents have been reported yet.</p>
         <?php endif; ?>
     </div>
+    <?php include 'dashboard_footer.php'; ?>
 </body>
 </html>

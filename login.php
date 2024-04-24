@@ -15,6 +15,7 @@ session_start();
     <link rel="stylesheet" href="css/login.css">
     <!-- Link to the external JavaScript file -->
     <script src="js/login.js"></script>
+    
 </head>
 <body>
     <!-- Include the header.php file -->
@@ -26,7 +27,7 @@ session_start();
             <!-- Login form with inputs for username and password -->
             <form action="includes/login.inc.php" method="post" class="login-form">
                 <h2>Student Login</h2>
-                <p>Please enter your registration number and password to log in</p>
+                <p>Please enter your Registration Number and password to log in</p>
                 <div class="form-group">
                     <label for="reg_number"><i class="fas fa-user"></i> Registration Number</label>
                     <input type="text" name="registration_number" id="registration_number" class="form-control" placeholder="Input your Registration Number">

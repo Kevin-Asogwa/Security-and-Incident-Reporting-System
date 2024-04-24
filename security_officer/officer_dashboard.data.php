@@ -1,31 +1,43 @@
 <?php
 // Include the database connsection file
-require_once "../includes/dbh.inc.php";
+require_once "../admin/dbh.inc.php";
 // Start the session
-session_start();
-
+if(!isset($_SESSION)) {
+    session_start();
+}
+$_SESSION['user_type'] = "officer";
 // Check if the user is logged in, if not then redirect to login page
-if(!isset($_SESSION["registration_number"]) ){
-    header("location: ../login.php");
+if(!isset($_SESSION["officer_id"]) ){
+    header("location: ../officer_login.php");
     exit;
 }
+
+
 // Get the user id from the session
-$registration_number = $_SESSION["registration_number"];
+
+$officer_id = $_SESSION["officer_id"];
 
 // Get the user details from the database
-$sql = "SELECT * FROM students WHERE registration_number = ?;";
+$sql = "SELECT * FROM security_officers WHERE officer_id = ?;";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $registration_number);
+$stmt->bind_param("i", $officer_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
+// Get the number of incidents reported by the user from the database
+$sql = "SELECT COUNT(*) AS count FROM incident";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
+$incident_reported = $result->fetch_assoc()["count"];
 
 
 
+            
 
-// Close the database connection
-$conn->close();
+
+
 // Default profile picture URL
 $default_profile_pic = "../img/bg.jpg";
 
@@ -38,4 +50,6 @@ if (!empty($user)) {
     // You can redirect the user, display an error message, etc.
     $fullname = "Unknown";
 }
+// Close the database connection
+
 ?>

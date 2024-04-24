@@ -13,27 +13,6 @@ include_once "dashboard.data.php";
     <link rel="stylesheet" href="..fontawesome/css/fontawesome.css">
     <link rel="stylesheet" href="..fontawesome/css/brands.css">
     <link rel="stylesheet" href="..fontawesome/css/solid.css">
-<style>
- /* Style for dropdown menu */
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        background-color: #fff;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-menu a {
-        color: #000;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: #f1f1f1;
-    }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -62,18 +41,21 @@ include_once "dashboard.data.php";
         // Set the variables to empty strings
         $profile = "";
         $report_incident = "";
-        $incident_status = "";
+        $incident_feedback = "";
         
         // Check which page is active and set the corresponding variable to "active"
-        if ($current_page == "profile.php") {
+        if ($current_page == "dashboard.php") {
+            $dash = "active";
+          } elseif($current_page == "profile.php") {
           $profile = "active";
         } elseif ($current_page == "report_incident.php") {
           $report_incident = "active";
-        } elseif ($current_page == "incident_status.php") {
-          $incident_status = "active";
+        } elseif ($current_page == "incident_feedback.php") {
+          $incident_feedback = "active";
         } 
         ?>
-               <li>
+                <li><a href="dashboard.php" class="<?php echo $dash; ?>">Dashboard</a></li>
+               <li class="dropdown">
                     <a href="#" class="<?php echo $profile; ?>" id="profile" name="profile">Profile</a>
                     <div class="dropdown-menu" id="sub-profile">
                         <a href="profile_overview.php">Profile Overview</a>
@@ -82,7 +64,7 @@ include_once "dashboard.data.php";
                     </div>
                 </li>
                 <li><a href="report_incident.php" class="<?php echo $report_incident; ?>"name="report_incident">Report Incident</a></li>
-                <li><a href="incident_status.php" class="<?php echo $incident_status; ?>">Incident Status</a></li>
+                <li><a href="reported feedback.php" class="<?php echo $incident_feedback; ?>">Incidents Feedback</a></li>
                 <li><a href="../logout.php">Logout</a></li>
             </ul>
         </div>

@@ -1,0 +1,124 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set root variables for colors */
+:root {
+  --primary-color: #0074d9;
+  --secondary-color: #ff4136;
+  --background-color: #f8f9fa;
+  --text-color: #333;
+}
+
+/* Overall container */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Header section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px;
+}
+
+/* Profile section */
+.profile {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Sidebar section */
+.sidebar {
+  flex-grow: 1;
+  background-color: #fff;
+  color: var(--text-color);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Main section */
+.main {
+  flex-grow: 3;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+}
+
+/* Dashboard Overview */
+.dashboard-overview {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.dashboard-overview div {
+  flex-basis: 20%;
+  text-align: center;
+}
+
+/* Add Officer section */
+.add-officer {
+  margin-top: 20px;
+}
+
+.add-officer h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.add-officer input[type="text"],
+.add-officer input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Error messages */
+.error {
+  color: #ff4136;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+/* Additional styling for specific fields */
+/* Example: */
+.container input[type="text"]:focus,
+.container input[type="email"]:focus,
+.container input[type="tel"]:focus,
+.container select:focus,
+.container textarea:focus {
+  outline: none;
+  border-color: #0074d9;
+  box-shadow: 0 0 5px rgba(0, 116, 217, 0.5);
+}

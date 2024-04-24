@@ -124,7 +124,10 @@ a {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
-
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 .dropdown-menu a {
   color: #000;
   padding: 12px 16px;
@@ -138,8 +141,12 @@ a {
 /* Define the sidebar sub-list items */
 
 /* Define the show class for the sub-list */
-.show {
+.dropdown:hover .dropdown-menu {
   display: block;
+}
+.dropdown-main a.active {
+  background-color: #007bff;
+  color: white;
 }
 #sub-profile-overview {
   display: none; /* Initially hide sub-menu */

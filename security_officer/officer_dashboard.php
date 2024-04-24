@@ -1,4 +1,10 @@
-<?php include 'dashboard_header.php'; ?>
+<?php
+if(!isset($_SESSION)) {
+    session_start();
+}
+$_SESSION['user_type'] = "officer";
+?>
+<?php include 'officer_dashboard_header.php'; ?>
 <!-- Main section -->
 <div class="main">
             <!-- Boxes section -->
@@ -6,14 +12,14 @@
                 <div class="box">
                     <div class="icon"><a href="reported.php"><i class="fas fa-exclamation-triangle"></i></div>
                     <div class="info">
-                        <h3>Incidents Reported</h3> </a> 
+                        <h3>Total Reports: <?php echo $incident_reported; ?> </h3> </a> 
                         
                     </div>
                 </div>
                 <div class="box">
                     <div class="icon"><a href="feedback.php"><i class="fas fa-comment-dots"></i></div>
                     <div class="info">
-                        <h3>Incidents Feedback</h3></a>
+                        <h3>Resolved Reports:</h3></a>
                         <!-- <p><?php echo $incidents_feedback; ?></p> -->
                     </div>
                 </div>
@@ -38,7 +44,7 @@
                 </ul>
             </div>
         </div>
-        <?php include 'dashboard_footer.php'; ?>
+        <?php include 'officer_dashboard_footer.php'; ?>
     </div>
     <!-- Script to toggle the sub-profile-overview menu -->
     <script>

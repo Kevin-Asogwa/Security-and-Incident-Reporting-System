@@ -52,7 +52,7 @@
                     $_SESSION['nearest_landmark'] = $row['nearest_landmark'];
                     // $_SESSION['password1'] = $row['password1'];
                     // $_SESSION['password2'] = $row['password2'];
-                    header("Location: ../dashboard - student/dashboard.php");
+                    header("Location: ../student_dashboard/dashboard.php");
                     exit();
                     
                     
