@@ -1,1 +1,1 @@
-web: heroku-php-apache2 project/
+web: heroku-php-apache2 Security-and-Incident-Reporting-System/
