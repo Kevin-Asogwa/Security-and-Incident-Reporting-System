@@ -24,7 +24,7 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 // Retrieve all incidents from the incident table
-$sql_incidents = "SELECT * FROM incident";
+$sql_incidents = "SELECT * FROM incident ORDER BY timestamp DESC;";
 $result_incidents = $conn->query($sql_incidents);
 
 // Close the database connection
@@ -39,6 +39,10 @@ $stmt->close();
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         /* Body styles */
+.wrapper {
+    margin-top: -32%;
+    margin-bottom: 10%;
+}
 
 h2 {
     text-align: center;
@@ -99,7 +103,12 @@ table th, table td {
                     echo "<td>".$row["type_of_incident"]."</td>";
                     echo "<td>".$row["description_of_incident"]."</td>";
                     echo "<td>".$row["witnesses"]."</td>";
-                    echo "<td>".$row["evidence"]."</td>";
+                     // Display link to the evidence file if it's not empty  
+                     if (!empty($row["evidence"])) {
+                        echo "<td><a href=\"" . $row['evidence'] . "\">Show Evidence</a></td>";
+                    } else {
+                        echo "<td>" . $row["evidence"] . "</td>";
+                    }
                     echo "<td>".$row["contact_information"]."</td>";
                     echo "<td>".$row["fullname"]."</td>";
                     echo "<td>".$row["registration_number"]."</td>";

@@ -30,34 +30,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $incident_id = mysqli_real_escape_string($conn, $incident_id);
     $feedback = mysqli_real_escape_string($conn, $feedback);
 
-    // Get the student's registration number from the session
-    session_start();
-    $registration_number = $_SESSION["registration_number"];
+       // Check if file is uploaded
+       if ($_FILES['file']['size'] > 0) {
+        // Directory for file upload
+        $file_dir = "../img_upload/";
 
-    // Insert the feedback message into the database
- 
+        // File path and name
+        $file_path = $file_dir . basename($_FILES["file"]["name"]);
 
-    $sql = "INSERT INTO messages (registration_number, incident_id, message_content, timestamp, sender_type)
-            VALUES (?, ?, ?, NOW(), 'student')";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iis", $registration_number, $incident_id, $feedback);
-    $stmt->execute();
+        // Check if file already exists
+        if (file_exists($file_path)) {
+            echo "File already exists.";
+            exit;
+        }
 
-    // After successful feedback submission
-if ($stmt->affected_rows > 0) {
-    // Feedback submitted successfully
-    // Redirect back to the incident details page with incident_id included
-    header("Location: feedback.php?incident_id=" . $incident_id);
-    
-    exit;
-} else {
-    // Failed to insert feedback message
-    echo "Failed to submit feedback.";
-}
+        // Move uploaded file to directory
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $file_path)) {
+            // File URL
+            $file_url = "../img_upload/" . basename($_FILES["file"]["name"]);
 
+            // Insert the feedback message and file URL into the database
+            $sql = "INSERT INTO messages (registration_number, incident_id, message_content, file_url, timestamp, sender_type)
+                    VALUES (?, ?, ?, ?, NOW(), 'student')";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iiss", $_SESSION["registration_number"], $incident_id, $feedback, $file_url);
+            $stmt->execute();
 
-    // Close the prepared statement
-    $stmt->close();
+            // Check if the message was successfully inserted
+            if ($stmt->affected_rows > 0) {
+                // Redirect back to the incident details page with incident_id included
+                header("Location: feedback.php?incident_id=" . $incident_id);
+                exit;
+            } else {
+                // Failed to insert feedback message
+                echo "Failed to submit feedback.";
+            }
+        } else {
+            // Failed to move file to directory
+            echo "Failed to upload file.";
+        }
+    } else {
+        // No file uploaded
+        // Insert the feedback message into the database without file URL
+        $sql = "INSERT INTO messages (registration_number, incident_id, message_content, timestamp, sender_type)
+                VALUES (?, ?, ?, NOW(), 'student')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iis", $_SESSION["registration_number"], $incident_id, $feedback);
+        $stmt->execute();
+
+        // Check if the message was successfully inserted
+        if ($stmt->affected_rows > 0) {
+            // Redirect back to the incident details page with incident_id included
+            header("Location: feedback.php?incident_id=" . $incident_id);
+            exit;
+        } else {
+            // Failed to insert feedback message
+            echo "Failed to submit feedback.";
+        }
+    }
 }
 
 // Check if the incident ID is provided in the URL
@@ -103,6 +133,15 @@ include 'dashboard_header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
     <link rel="stylesheet" href="../css/feedback.css">
+    <style>
+        .status {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 2px;
+            text-align:center;
+            color: green;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -118,9 +157,18 @@ include 'dashboard_header.php';
         <li><strong>Type:</strong> <?php echo $incident['type_of_incident']; ?></li>
         <li><strong>Description:</strong> <?php echo $incident['description_of_incident']; ?></li>
         <li><strong>Witnesses:</strong> <?php echo $incident['witnesses']; ?></li>
-        <li><strong>Evidence:</strong> <?php echo $incident['evidence']; ?></li>
         <li><strong>Contact Information:</strong> <?php echo $incident['contact_information']; ?></li>
+        <li><strong>Evidence:</strong> 
+            <?php if (!empty($incident['evidence'])): ?>
+                <a href="<?php echo $incident['evidence']; ?>" >View Evidence</a>
+            <?php else: ?>
+                <!-- Display message if no evidence is available -->
+                <?php echo $incident['evidence']; ?></li>
+            <?php endif; ?>
+        </li>              
     </ul>
+    <!-- incident status -->
+    <div class="status">Incident Status: <?php echo $incident["status"]; ?></div>
 
     <!-- Display feedback messages -->
     <h2>Feedback Messages:</h2>
@@ -178,6 +226,8 @@ include 'dashboard_header.php';
         <div>
             <input type="submit" value="Submit Feedback" id="submitBtn">
         </div>
+        <div>
+    </div>
     </form>
 
     <script>

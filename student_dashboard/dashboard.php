@@ -17,24 +17,25 @@ if(!isset($_SESSION["registration_number"]) ){
 <div class="main">
             <!-- Boxes section -->
             <div class="boxes">
+                
                 <div class="box">
-                    <div class="icon"><a href="reported.php"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="icon"><a href="reported.php"><i class="fas fa-bullhorn"></i></div>
                     <div class="info">
-                <h3>Incidents Reported: <?php echo $incident_reported; ?> </h3>
-                                
-            </div>
+                        <h3>Incidents Reported:</h3></a>
+                        <!-- <p><?php echo $$incident_reported; ?></p> -->
+                    </div>
                 </div>
                 <div class="box">
-                    <div class="icon"><a href="status.php"><i class="fas fa-comment-dots"></i></div>
+                    <div class="icon"><a href="incident_status.php"><i class="fas fa-info-circle "></i></div>
                     <div class="info">
                         <h3>Incidents Status</h3></a>
                         <!-- <p><?php echo $incident_status; ?></p> -->
                     </div>
                 </div>
                 <div class="box">
-                    <div class="icon"><a href="pending.php"><i class="fas fa-clock"></i></div>
+                    <div class="icon"><a href="security_contact.php"><i class="fas fa-exclamation-triangle"></i></div>
                     <div class="info">
-                        <h3>Pending Reports</h3> </a>
+                        <h3>Emergency Security Contacts</h3> </a>
                         <!-- <p><?php echo $pending_reports; ?></p> -->
                     </div>
                 </div>

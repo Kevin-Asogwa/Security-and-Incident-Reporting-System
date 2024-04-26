@@ -1,7 +1,10 @@
 html,
 body {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  position: relative;
 }
 
 .wrapper {
@@ -78,4 +81,14 @@ input[type="submit"]:hover {
 .message .timestamp {
   font-size: 12px;
   color: #666;
+}
+/* CSS for the status link */
+.Pending {
+  color: blue; /* Change link color to blue */
+  text-decoration: underline; /* Underline the link */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.Pending:hover {
+  color: darkblue; /* Darken link color on hover */
 }

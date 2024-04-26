@@ -15,7 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedback = mysqli_real_escape_string($conn, $feedback);
 
     // Get the officer's ID from the session
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+    }
     $officer_id = $_SESSION["officer_id"];
     $file_dir = "../img_upload/";
     $file_path = $file_dir . basename($_FILES["file"]["name"]);

@@ -72,8 +72,15 @@ $result_feedback = $stmt_feedback->get_result();
         <li><strong>Type:</strong> <?php echo $incident['type_of_incident']; ?></li>
         <li><strong>Description:</strong> <?php echo $incident['description_of_incident']; ?></li>
         <li><strong>Witnesses:</strong> <?php echo $incident['witnesses']; ?></li>
-        <li><strong>Evidences:</strong> <?php echo $incident['evidence']; ?></li>
         <li><strong>Contact Information:</strong> <?php echo $incident['contact_information']; ?></li>
+        <li><strong>Evidence:</strong> 
+            <?php if (!empty($incident['evidence'])): ?>
+                <a href="<?php echo $incident['evidence']; ?>" >View Evidence</a>
+            <?php else: ?>
+                <!-- Display message if no evidence is available -->
+                <?php echo $incident['evidence']; ?></li>
+            <?php endif; ?>
+        </li>        
     </ul>
 
     <!-- Display feedback messages -->
@@ -125,6 +132,15 @@ $result_feedback = $stmt_feedback->get_result();
     <div>
         <input type="submit" value="Submit Feedback" id="submitBtn">
     </div>
+    <div>
+    <strong><p>Status: 
+        <?php 
+        // Echo the current status as a link to change_status.php
+        echo "<a class='Pending' href='change_status.php?incident_id=" . $incident_id . "'>" . $incident["status"] . "</a>"; 
+        ?>
+    </p> </strong>
+</div>
+
 </form>
 
 <script>

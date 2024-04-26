@@ -6,88 +6,115 @@ require_once "../includes/dbh.inc.php";
 if(!isset($_SESSION)) {
     session_start();
 }
-// Define variables and initialize with empty values
-$Date_and_time_of_incident = $location_of_incident = $type_of_incident = $description_of_incident = $witnesses = $evidence = "";
-$contact_information = $fullname = $registration_number = "";
-
-// Check if the report is not anonymous
-if(!isset($_POST["anonymous_reporting"]) || $_POST["anonymous_reporting"] != "on") {
-    // Retrieve user's fullname and registration_number from the students table
-    // Assuming you have stored the registration number in the session
-    if(isset($_SESSION["registration_number"])) {
-        $registration_number = $_SESSION["registration_number"];
-
-        $sql_fetch_user_info = "SELECT fullname, registration_number FROM students WHERE registration_number = ?";
-        if($stmt_fetch_user_info = $conn->prepare($sql_fetch_user_info)){
-            // Bind variable to the prepared statement as parameter
-            $stmt_fetch_user_info->bind_param("s", $registration_number);
-
-            // Attempt to execute the prepared statement
-            if($stmt_fetch_user_info->execute()){
-                // Store result
-                $stmt_fetch_user_info->store_result();
-
-                // Check if user exists
-                if($stmt_fetch_user_info->num_rows() == 1){
-                    // Bind result variables
-                    $stmt_fetch_user_info->bind_result($fullname, $registration_number);
-
-                    // Fetch values
-                    $stmt_fetch_user_info->fetch();
+    
+    // Define variables and initialize with empty values
+    $Date_and_time_of_incident = $location_of_incident = $type_of_incident = $description_of_incident = $witnesses = $evidence = "";
+    $contact_information = $fullname = $registration_number = $status = "";
+    
+    // Check if the report is not anonymous
+    if(!isset($_POST["anonymous_reporting"]) || $_POST["anonymous_reporting"] != "on") {
+        // Retrieve user's fullname and registration_number from the students table
+        // Assuming you have stored the registration number in the session
+        if(isset($_SESSION["registration_number"])) {
+            $registration_number = $_SESSION["registration_number"];
+    
+            $sql_fetch_user_info = "SELECT fullname, registration_number FROM students WHERE registration_number = ?";
+            if($stmt_fetch_user_info = $conn->prepare($sql_fetch_user_info)){
+                // Bind variable to the prepared statement as parameter
+                $stmt_fetch_user_info->bind_param("s", $registration_number);
+    
+                // Attempt to execute the prepared statement
+                if($stmt_fetch_user_info->execute()){
+                    // Store result
+                    $stmt_fetch_user_info->store_result();
+    
+                    // Check if user exists
+                    if($stmt_fetch_user_info->num_rows() == 1){
+                        // Bind result variables
+                        $stmt_fetch_user_info->bind_result($fullname, $registration_number);
+    
+                        // Fetch values
+                        $stmt_fetch_user_info->fetch();
+                    }
                 }
+    
+                // Close statement
+                $stmt_fetch_user_info->close();
             }
+        }
+    }
+    
+    // Processing form data when form is submitted
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        // Validate and assign input values
+        $Date_and_time_of_incident = trim($_POST["Date_and_time_of_incident"]);
+        $location_of_incident = trim($_POST["location_of_incident"]);
+        $type_of_incident = trim($_POST["type_of_incident"]);
+        $description_of_incident = trim($_POST["description_of_incident"]);
+        $witnesses = trim($_POST["witnesses"]);
+        $contact_information = trim($_POST["contact_information"]);
+    
+        // Handle file upload
+        if(isset($_FILES["evidence"]) && $_FILES["evidence"]["error"] == 0){
+            // Directory for file upload
+            $target_dir = "../img_upload/";
+            // File name
+            $target_file = $target_dir . basename($_FILES["evidence"]["name"]);
+            // File extension
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            // Valid file extensions
+            $extensions_arr = array("jpg","jpeg","png","gif","pdf","mp4","avi","mov");
+    
+            // Check if file type is valid
+            if(in_array($imageFileType,$extensions_arr)){
+                // Move uploaded file to directory
+                if(move_uploaded_file($_FILES["evidence"]["tmp_name"], $target_file)){
+                    // File uploaded successfully
+                    $evidence = $target_file;
+                } else {
+                    // Failed to upload file
+                    echo "Failed to upload file.";
+                }
+            } else {
+                // Invalid file type
+                echo "Only JPG, JPEG, PNG, GIF, PDF, MP4, AVI, and MOV files are allowed.";
+            }
+        }
+    
+        // Prepare an insert statement
+        $sql = "INSERT INTO incident (date_and_time_of_incident, location_of_incident, type_of_incident, description_of_incident, witnesses, evidence, contact_information, fullname, registration_number, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')"; // Set default status as "pending"
 
+    
+        if($stmt = $conn->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bind_param("sssssssss", $param_Date_and_time_of_incident, $param_location_of_incident, $param_type_of_incident, $param_description_of_incident, $param_witnesses, $param_evidence, $param_contact_information, $param_fullname, $param_registration_number);
+    
+            // Set parameters
+            $param_Date_and_time_of_incident = $Date_and_time_of_incident;
+            $param_location_of_incident = $location_of_incident;
+            $param_type_of_incident = $type_of_incident;
+            $param_description_of_incident = $description_of_incident;
+            $param_witnesses = $witnesses;
+            $param_evidence = $evidence;
+            $param_contact_information = $contact_information;
+            $param_fullname = $fullname;
+            $param_registration_number = $registration_number;
+    
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                echo "Incident reported successfully.";
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+    
             // Close statement
-            $stmt_fetch_user_info->close();
+            $stmt->close();
         }
     }
-}
-
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate and assign input values
-    $Date_and_time_of_incident = trim($_POST["Date_and_time_of_incident"]);
-    $location_of_incident = trim($_POST["location_of_incident"]);
-    $type_of_incident = trim($_POST["type_of_incident"]);
-    $description_of_incident = trim($_POST["description_of_incident"]);
-    $witnesses = trim($_POST["witnesses"]);
-    $evidence = $_FILES["evidence"]; // Handle file upload
-    $contact_information = trim($_POST["contact_information"]);
-
-    // Prepare an insert statement
-    $sql = "INSERT INTO incident (date_and_time_of_incident, location_of_incident, type_of_incident, description_of_incident, witnesses, evidence, contact_information, fullname, registration_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    if($stmt = $conn->prepare($sql)){
-        // Bind variables to the prepared statement as parameters
-        $stmt->bind_param("sssssssss", $param_Date_and_time_of_incident, $param_location_of_incident, $param_type_of_incident, $param_description_of_incident, $param_witnesses, $param_evidence, $param_contact_information, $param_fullname, $param_registration_number);
-
-        // Set parameters
-        $param_Date_and_time_of_incident = $Date_and_time_of_incident;
-        $param_location_of_incident = $location_of_incident;
-        $param_type_of_incident = $type_of_incident;
-        $param_description_of_incident = $description_of_incident;
-        $param_witnesses = $witnesses;
-        $param_evidence = $evidence['name']; // Save file name
-        $param_contact_information = $contact_information;
-        $param_fullname = $fullname;
-        $param_registration_number = $registration_number;
-
-        // Attempt to execute the prepared statement
-        if($stmt->execute()){
-            echo "Incident reported successfully.";
-        } else{
-            echo "Oops! Something went wrong. Please try again later.";
-        }
-
-        // Close statement
-        $stmt->close();
-    }
-}
-
-include 'dashboard_header.php';
-?>
-
-
+    
+    include 'dashboard_header.php';
+    ?>
+        
 <!DOCTYPE html>
 <html lang="en">
 <head>

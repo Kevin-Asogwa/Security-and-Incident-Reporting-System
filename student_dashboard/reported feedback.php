@@ -17,7 +17,7 @@ if (!isset($_SESSION["registration_number"])) {
 $registration_number = $_SESSION["registration_number"];
 
 // Retrieve all incidents reported by the current student from the incident table
-$sql_incidents = "SELECT * FROM incident WHERE registration_number = ?";
+$sql_incidents = "SELECT * FROM incident WHERE registration_number = ? ORDER BY timestamp DESC;";
 $stmt_incidents = $conn->prepare($sql_incidents);
 $stmt_incidents->bind_param("i", $registration_number);
 $stmt_incidents->execute();
@@ -41,8 +41,8 @@ $stmt_incidents->close();
         flex-direction: column;
         background-color: var(--white);
         color: var(--black);
-        margin-left: 25%;
-        margin-top: -38%;
+        margin-left: 20%;
+        margin-top: -30%;
         margin-bottom: 10%;
         padding-left: 5px;
         }
@@ -82,7 +82,8 @@ $stmt_incidents->close();
                 <th>Witnesses</th>
                 <th>Evidence</th>
                 <th>Contact Information</th>
-                <th>Actions</th> <!-- View Feedback Column -->
+                <th>Actions</th>
+                <th>Incident Status</th> <!-- View Feedback Column -->
             </tr>
         </thead>
         <tbody>
@@ -97,13 +98,20 @@ $stmt_incidents->close();
                     echo "<td>" . $row["type_of_incident"] . "</td>";
                     echo "<td>" . $row["description_of_incident"] . "</td>";
                     echo "<td>" . $row["witnesses"] . "</td>";
-                    echo "<td>" . $row["evidence"] . "</td>";
+                     // Display link to the evidence file if it's not empty  
+                    if (!empty($row["evidence"])) {
+                        echo "<td><a href=\"" . $row['evidence'] . "\">Show Evidence</a></td>";
+                    } else {
+                        echo "<td>" . $row["evidence"] . "</td>";
+                    }
+                    echo "</td>";
                     echo "<td>" . $row["contact_information"] . "</td>";
                     echo "<td><a href=\"feedback.php?incident_id=" . $row['incident_id'] . "\">View Feedback</a></td>";
+                    echo "<td>" . $row["status"] . "</td>";
                     echo "</tr>";
                 } 
             } else {
-                echo "<tr><td colspan='9'>No incidents reported yet.</td></tr>";
+                echo "<tr><td colspan='10'>No incidents reported yet.</td></tr>";
             }
             ?>
         </tbody>

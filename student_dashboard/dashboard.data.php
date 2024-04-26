@@ -27,8 +27,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-
-
 // Get the number of incidents reported by the user from the database
 $sql = "SELECT COUNT(*) AS count FROM incident WHERE incident_id = ?";
 $stmt = $conn->prepare($sql);
@@ -36,7 +34,6 @@ $stmt->bind_param("i", $incident_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $incident_reported = $result->fetch_assoc()["count"];
-
 
 // Get the number of incidents reported by the user from the database
 $sql = "SELECT COUNT(*) AS count FROM incident WHERE registration_number = ?";
@@ -47,9 +44,6 @@ $stmt->bind_param("i", $registration_number);
 $stmt->execute();
 $result = $stmt->get_result();
 $incident_reported = $result->fetch_assoc()["count"];
-            
-
-
 
 // Default profile picture URL
 $default_profile_pic = "../img/bg.jpg";

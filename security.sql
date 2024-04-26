@@ -40,7 +40,11 @@ CREATE TABLE incident (
     contact_information VARCHAR(255),
     fullname VARCHAR(255), 
     registration_number VARCHAR(255) 
+    status VARCHAR(20) NOT NULL DEFAULT 'pending';
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- ALTER TABLE incident
+-- ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'pending';
 
 
 //ADMIN
@@ -82,6 +86,7 @@ CREATE TABLE messages (
     message_content TEXT NOT NULL,
     file_url VARCHAR(255) NULL,
     sender_type ENUM('officer', 'student') NOT NULL DEFAULT 'student';
+    read_status INT DEFAULT 0;
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (officer_id) REFERENCES security_officers(officer_id),
     FOREIGN KEY (registration_number) REFERENCES students(registration_number),
@@ -89,3 +94,4 @@ CREATE TABLE messages (
     );
 
 
+-- ALTER TABLE messages ADD read_status INT DEFAULT 0;

@@ -14,12 +14,11 @@ if (!isset($_SESSION["registration_number"])) {
 $registration_number = $_SESSION["registration_number"];
 
 // Fetch incidents reported by the currently logged-in user
-$sql = "SELECT * FROM incident WHERE registration_number = ? ORDER BY date_and_time_of_incident DESC;";
+$sql = "SELECT * FROM incident WHERE registration_number = ? ORDER BY timestamp DESC;";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $registration_number);
 $stmt->execute();
 $result = $stmt->get_result();
-
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +67,7 @@ table th, table td {
             <table>
                 <thead>
                     <tr>
-                        <th>Date and Time</th>
+                        <th>Date and Time of Incident</th>
                         <th>Location</th>
                         <th>Type</th>
                         <th>Description</th>
@@ -86,10 +85,17 @@ table th, table td {
                             <td><?php echo isset($row['type_of_incident']) ? htmlspecialchars($row['type_of_incident']) : ''; ?></td>
                             <td><?php echo isset($row['description_of_incident']) ? htmlspecialchars($row['description_of_incident']) : ''; ?></td>
                             <td><?php echo isset($row['witnesses']) ? htmlspecialchars($row['witnesses']) : ''; ?></td>
-                            <td><?php echo isset($row['witnesses']) ? htmlspecialchars($row['evidence']) : ''; ?></td>
+                            <td>
+                                <?php if (!empty($row['evidence'])): ?>
+                                    <a href="<?php echo $row['evidence']; ?>" >View Evidence</a>
+                                <?php else: ?>
+                                    <td><?php echo isset($row['evidence']) ? htmlspecialchars($row['evidence']) : ''; ?></td>
+                                <?php endif; ?>
+                            </td>
                             <td><?php echo isset($row['contact_information']) ? htmlspecialchars($row['contact_information']) : ''; ?></td>
                             <td><?php echo isset($row['status']) ? htmlspecialchars($row['status']) : ''; ?></td>
                         </tr>
+
                     <?php endwhile; ?>
                 </tbody>
             </table>

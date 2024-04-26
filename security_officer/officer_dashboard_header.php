@@ -64,7 +64,7 @@ include "officer_dashboard.data.php";
                         <a href="change_password.php">Change Password</a>
                     </div>
                 </li>
-                <li><a href="reported.php" class="<?php echo $report_incident; ?>"name="report_incident">View Reports</a></li>
+                <li><a href="reported.php" class="<?php echo $report_incident; ?>"name="report_incident">Manage Reports</a></li>
                 <li><a href="reported feedback.php" class="<?php echo $incident_status; ?>">Provide Feedback</a></li>
                 <li><a href="../officer_logout.php">Logout</a></li>
             </ul>
