@@ -31,10 +31,15 @@ $stmt_incidents->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reported Incidents and Feedback</title>
+    <title>Incident Status</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/feedback.css">
     <style>
-        /* Add your CSS styles here */
+        .wrapper { margin-left: 30%;
+        margin-top: -30%;
+        margin-bottom: 10%;
+        align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +47,7 @@ $stmt_incidents->close();
 <?php include 'dashboard_header.php'; ?>
 
 <div class="wrapper">
-    <h2>Your Reported Incidents and Feedback</h2>
+    <h2>Your Report Status</h2>
     <table>
         <thead>
             <tr>

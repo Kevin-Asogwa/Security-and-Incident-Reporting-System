@@ -83,7 +83,7 @@ $stmt->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reported Incidents</title>
+    <title>Officer Dashboard</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
         /* Body styles */

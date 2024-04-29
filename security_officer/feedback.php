@@ -55,6 +55,17 @@ $result_feedback = $stmt_feedback->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
     <link rel="stylesheet" href="../css/feedback.css">
+    <style>
+        .wrapper {
+            margin-top: -500px;
+            align-items: center;
+            padding: auto;
+            margin-left: 500px;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <!-- Main section -->

@@ -15,10 +15,29 @@ $result_attending_incidents = $conn->query($sql_attending_incidents);
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incident Status</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <style>
+        .wrapper { margin-left: 20%;
+        margin-top: -40%;
+        margin-bottom: 23%;
+        align-items: center;
+        }
+    </style>
+</head>
+<body>
 
+<?php include 'officer_dashboard_header.php'; ?>
+
+<div class="wrapper">
 
 <div class="box">
-    <div class="icon"><a href="attending.php"><i class="fas fa-exclamation-triangle"></i></a></div>
+    <div class="icon"><a href="attending.php"><i class="fas fas fa-spinner"></i></a></div>
     <div class="info">
         <h3>Attending Reports: <?php echo $attending_count; ?> </h3>
     </div>
@@ -73,4 +92,9 @@ $result_attending_incidents = $conn->query($sql_attending_incidents);
         </tbody>
     </table>
 </div>
+</div>
 
+<?php include 'officer_dashboard_footer.php'; ?>
+
+</body>
+</html>

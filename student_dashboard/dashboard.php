@@ -14,6 +14,11 @@ if(!isset($_SESSION["registration_number"]) ){
 
 <?php include 'dashboard_header.php'; ?>
 <!-- Main section -->
+<style>
+.box {
+    text-align: center;
+}
+</style>
 <div class="main">
             <!-- Boxes section -->
             <div class="boxes">
@@ -21,8 +26,8 @@ if(!isset($_SESSION["registration_number"]) ){
                 <div class="box">
                     <div class="icon"><a href="reported.php"><i class="fas fa-bullhorn"></i></div>
                     <div class="info">
-                        <h3>Incidents Reported:</h3></a>
-                        <!-- <p><?php echo $$incident_reported; ?></p> -->
+                        <h3>Incidents Reported: <br>
+                            <?php echo $incident_reported; ?></h3></a>                     
                     </div>
                 </div>
                 <div class="box">

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="fontawesome/css/solid.css">
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/body.css" />
+    <link rel="stylesheet" href="css/body.css" />3
     <!-- Link to the external JavaScript file -->
     <script src="js/script.js"></script>
   </head>

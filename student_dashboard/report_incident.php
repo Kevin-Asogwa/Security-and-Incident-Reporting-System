@@ -117,7 +117,7 @@ if(!isset($_SESSION)) {
         
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
     <title>Report Incident</title>
     <!-- Link to your CSS file -->
@@ -130,7 +130,7 @@ if(!isset($_SESSION)) {
         background-color: var(--white);
         color: var(--black);
         margin-left: 30%;
-        margin-top: -30%;
+        margin-top: -32%;
         margin-bottom: 10%;
         padding-left: 5px;
         background-color: #f9f9f9;
@@ -140,7 +140,7 @@ if(!isset($_SESSION)) {
 
     h2 {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
 
     form div {
@@ -260,6 +260,6 @@ if(!isset($_SESSION)) {
             </div>
         </form>
     </div>
-    <?php include 'dashboard_footer.php'; ?>
+ 
 </body>
 </html>
